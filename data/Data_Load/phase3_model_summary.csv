@@ -1,0 +1,6 @@
+section,metric,value
+Clustering,cluster_count,7
+Clustering,top_cluster,No Valid Purchase
+Forecasting,model_type,seasonal_naive_fallback
+Forecasting,top_category_mape_pct,50.9
+Forecasting,use_for_demand_planning,Baseline only
