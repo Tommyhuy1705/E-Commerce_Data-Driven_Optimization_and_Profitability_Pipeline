@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "8b72707f50bb19a34b89",
+  "position": {
+    "x": 4.5110132158590313,
+    "y": 336.07048458149779,
+    "z": 17000,
+    "height": 107.13656387665198,
+    "width": 147.73568281938327,
+    "tabOrder": 17000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Top categories drive revenue, but margin and leakage vary materially across price bands."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

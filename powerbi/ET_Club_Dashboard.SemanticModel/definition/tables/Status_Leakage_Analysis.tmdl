@@ -1,0 +1,90 @@
+table Status_Leakage_Analysis
+	lineageTag: ed8e4203-eaf8-4e6d-937c-7f229373a0fe
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1098eac7-566b-42e8-83e5-0620f29d04e1
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 0b5c9a42-2cec-4351-a9a0-e29c3d660891
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column items
+		dataType: int64
+		formatString: 0
+		lineageTag: 64c7db2a-f318-4e7e-9663-b4e0f95b461a
+		summarizeBy: sum
+		sourceColumn: items
+
+		annotation SummarizationSetBy = Automatic
+
+	column orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b882e8d-7aaa-4d3f-b686-5a9ccc3c8720
+		summarizeBy: sum
+		sourceColumn: orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: double
+		lineageTag: a2c27af3-0bbf-4232-a44c-96827d8cafd1
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gross_profit
+		dataType: double
+		lineageTag: aa16aaa7-ce41-49b9-899e-44ccbf244204
+		summarizeBy: sum
+		sourceColumn: gross_profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column share_of_gmv_pct
+		dataType: double
+		lineageTag: af432227-4289-48e6-b6ee-f10ec180d595
+		summarizeBy: sum
+		sourceColumn: share_of_gmv_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_recognized_revenue
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0a45da09-86c7-480c-af09-eb41270639d8
+		summarizeBy: none
+		sourceColumn: is_recognized_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Status_Leakage_Analysis = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("status_leakage_analysis.csv"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[StatusLeakageTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

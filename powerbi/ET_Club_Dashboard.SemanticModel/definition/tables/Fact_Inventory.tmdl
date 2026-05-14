@@ -1,0 +1,124 @@
+table Fact_Inventory
+	lineageTag: 15ea266e-f1ed-4fce-b66c-18a970f2e0f2
+
+	column inventory_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c1175bb2-b9b7-49ca-b551-92e6fe093c32
+		summarizeBy: sum
+		sourceColumn: inventory_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 510ef44a-1d59-4c17-8f9a-d721e9203638
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: d1139e4f-c5c5-49fc-8a8a-10c5e3d132ca
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_brand
+		dataType: string
+		lineageTag: 110b120c-c0ca-4308-b65c-3bb5bb956f2e
+		summarizeBy: none
+		sourceColumn: product_brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category
+		dataType: string
+		lineageTag: 224583cc-56a3-47ac-b5d6-c7891d3814a6
+		summarizeBy: none
+		sourceColumn: product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: 7fa57fbd-e2c5-4b66-a163-2b18b76011d0
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column center_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 10051204-f41f-4ca6-9d95-648c9d78072b
+		summarizeBy: none
+		sourceColumn: center_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost
+		dataType: double
+		lineageTag: c9e3873d-0356-41ee-a4a5-fe6cdea86fab
+		summarizeBy: sum
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_sold
+		dataType: int64
+		formatString: 0
+		lineageTag: d8239a82-95d3-4b34-a390-b02cd3abc9d8
+		summarizeBy: sum
+		sourceColumn: is_sold
+
+		annotation SummarizationSetBy = Automatic
+
+	column holding_days
+		dataType: double
+		lineageTag: ad8d4114-c078-4b26-85ec-739be51a527a
+		summarizeBy: sum
+		sourceColumn: holding_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sunk_cost_risk
+		dataType: double
+		lineageTag: 84c0484e-7050-464a-a9b5-e122164aa913
+		summarizeBy: sum
+		sourceColumn: sunk_cost_risk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column holding_cost_estimate
+		dataType: double
+		lineageTag: 66a04c0b-3c18-40d6-b629-ede29aeb32a1
+		summarizeBy: sum
+		sourceColumn: holding_cost_estimate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_Inventory = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadParquet("fact_inventory.parquet"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[FactInventoryTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

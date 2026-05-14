@@ -1,0 +1,89 @@
+table Dim_Date
+	lineageTag: 86f6683b-c9c7-4cfa-bb51-f424c2b5d0cd
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 78fb5d50-d6d0-4d74-85ec-2a13de484b5f
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 916c6086-c892-4cec-bafb-c31d14bcf549
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 59d87ea7-0ef4-4848-ba11-59566e59a974
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c174a4a-58a6-4e33-9cd5-6af83f6a3e00
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 9154589f-898a-42e9-9c15-40ff0d12650a
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: c06d29f2-2c97-4ba1-82a9-b73d00f6c240
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: a8fb8d1e-c97a-49f7-b8a5-473f0d17271a
+		summarizeBy: sum
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 2c3f2d04-0e54-419d-8589-8438aaf160dc
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadParquet("dim_date.parquet"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[DimDateTypes], [Culture="en-US", MissingField=MissingField.Ignore])
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

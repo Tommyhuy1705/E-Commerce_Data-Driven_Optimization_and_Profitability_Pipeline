@@ -1,0 +1,91 @@
+table Demand_Forecast_12M
+	lineageTag: db48f993-305f-4b8e-bbd5-c299eef3c7fc
+
+	column category
+		dataType: string
+		lineageTag: 09f91fcd-f3c3-4e1b-bdb9-25b0dd9d6b46
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ds
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 763bf12c-7ef2-4380-b921-a54f6a1011de
+		summarizeBy: none
+		sourceColumn: ds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column yhat
+		dataType: double
+		lineageTag: 76c10e06-dc65-4ebc-9d21-ff2a03086eef
+		summarizeBy: sum
+		sourceColumn: yhat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yhat_lower
+		dataType: double
+		lineageTag: 1d9205a3-0177-4ae1-a6e5-391467958073
+		summarizeBy: sum
+		sourceColumn: yhat_lower
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column yhat_upper
+		dataType: double
+		lineageTag: bf9e7684-752b-44b5-ba51-82bd5e6115e6
+		summarizeBy: sum
+		sourceColumn: yhat_upper
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mape_pct
+		dataType: double
+		lineageTag: 636e8fa7-0f93-4cca-8ffe-871cfb570ef9
+		summarizeBy: sum
+		sourceColumn: mape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column model_type
+		dataType: string
+		lineageTag: 0736fd2e-cb01-4bce-9eb0-e471fead91d7
+		summarizeBy: none
+		sourceColumn: model_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column year = YEAR([ds])
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c036172-fd97-4848-a57b-d754347a135d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Demand_Forecast_12M = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("demand_forecast_12m.csv"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[DemandForecastTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

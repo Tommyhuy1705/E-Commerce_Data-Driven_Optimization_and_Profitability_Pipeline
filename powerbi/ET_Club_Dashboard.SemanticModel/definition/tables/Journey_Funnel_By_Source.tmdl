@@ -1,0 +1,155 @@
+table Journey_Funnel_By_Source
+	lineageTag: efc91282-9496-46fb-9584-32e6e062d0d5
+
+	column traffic_source
+		dataType: string
+		lineageTag: 9e0cc491-bec3-48d8-bdb8-311c303352e3
+		summarizeBy: none
+		sourceColumn: traffic_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_type
+		dataType: string
+		lineageTag: f81dd0a6-5b58-4551-917f-438e227c5469
+		summarizeBy: none
+		sourceColumn: event_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 76571a7f-56b3-4230-850a-1e5807ca4c68
+		summarizeBy: sum
+		sourceColumn: event_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 87ec5153-48cf-490d-8706-9d7cbb0bad59
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_users
+		dataType: int64
+		formatString: 0
+		lineageTag: 80685c62-d2a5-492e-990a-b7aa9a47a932
+		summarizeBy: sum
+		sourceColumn: unique_users
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_event_count
+		dataType: int64
+		formatString: 0
+		lineageTag: c3ffe545-d023-4456-9f78-56ded2d64d67
+		summarizeBy: sum
+		sourceColumn: source_event_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b6f0dd6-d9c7-43b2-9b02-a529068d9491
+		summarizeBy: sum
+		sourceColumn: source_sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_unique_users
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a6b5717-d8ef-4a5d-84e2-eeb47aa20e0d
+		summarizeBy: sum
+		sourceColumn: source_unique_users
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 1991cd88-bafa-4ce6-bf3a-cf01d1761cb0
+		summarizeBy: sum
+		sourceColumn: stage_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_share_within_source_pct
+		dataType: double
+		lineageTag: cd327238-d97a-4cf9-9be2-8709dff0a9ef
+		summarizeBy: sum
+		sourceColumn: event_share_within_source_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column session_reach_within_source_pct
+		dataType: double
+		lineageTag: 8a3a80df-7567-4f54-a406-d2f4f53c26da
+		summarizeBy: sum
+		sourceColumn: session_reach_within_source_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column user_reach_within_source_pct
+		dataType: double
+		lineageTag: f3d53a6d-0cab-4965-b6e1-b879664e7596
+		summarizeBy: sum
+		sourceColumn: user_reach_within_source_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_to_cart_session_cvr_pct
+		dataType: double
+		lineageTag: 16a04124-fd94-43f3-b931-978737a219d1
+		summarizeBy: sum
+		sourceColumn: product_to_cart_session_cvr_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_to_purchase_session_cvr_pct
+		dataType: double
+		lineageTag: 5d89b5b0-303e-4bf9-aaf0-855830fe9409
+		summarizeBy: sum
+		sourceColumn: product_to_purchase_session_cvr_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cart_to_purchase_session_cvr_pct
+		dataType: double
+		lineageTag: fb992d10-9137-4ba6-b441-048e27cece7d
+		summarizeBy: sum
+		sourceColumn: cart_to_purchase_session_cvr_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Journey_Funnel_By_Source = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("journey_funnel_by_source.csv"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[JourneyFunnelBySourceTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

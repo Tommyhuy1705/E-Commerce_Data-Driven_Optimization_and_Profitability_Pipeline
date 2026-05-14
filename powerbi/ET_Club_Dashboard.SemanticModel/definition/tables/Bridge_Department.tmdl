@@ -1,0 +1,29 @@
+table Bridge_Department
+	lineageTag: e5762a90-ef90-4f0a-a56e-0d874bb9a4c5
+
+	column department
+		lineageTag: e54da117-a112-480f-8fbd-218a295165c7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [department]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Bridge_Department = calculated
+		mode: import
+		source =
+				
+				DISTINCT(
+				    FILTER(
+				        UNION(
+				            SELECTCOLUMNS(Dim_Products, "department", Dim_Products[department]),
+				            SELECTCOLUMNS(Price_Band_Performance, "department", Price_Band_Performance[department]),
+				            SELECTCOLUMNS(Inventory_ABC_Aging_By_Category_DC, "department", Inventory_ABC_Aging_By_Category_DC[department]),
+				            SELECTCOLUMNS(Return_Cancel_Root_Cause_Proxy, "department", Return_Cancel_Root_Cause_Proxy[department])
+				        ),
+				        NOT ISBLANK([department])
+				    )
+				)
+
+	annotation PBI_Id = f2e1df7fa90c4351b7c980b8bd5c58c5
+

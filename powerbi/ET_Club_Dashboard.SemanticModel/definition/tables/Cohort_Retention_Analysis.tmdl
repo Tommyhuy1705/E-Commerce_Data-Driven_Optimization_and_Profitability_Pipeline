@@ -1,0 +1,42 @@
+table Cohort_Retention_Analysis
+	lineageTag: b00ac30e-d3a7-4de0-b38e-8d4a9b4feaa8
+
+	column Year_Offset
+		dataType: string
+		lineageTag: b5011456-af03-4d18-8e3d-3b649e6b6756
+		summarizeBy: none
+		sourceColumn: Year_Offset
+
+		annotation SummarizationSetBy = Automatic
+
+	column Retention_Rate
+		dataType: string
+		lineageTag: 5d845d06-8c50-4750-9170-dbbadb2294e7
+		summarizeBy: none
+		sourceColumn: Retention_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_year
+		dataType: string
+		lineageTag: 16ae9f6a-152d-4989-b401-1739a752ab08
+		summarizeBy: none
+		sourceColumn: cohort_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cohort_Retention_Analysis = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("cohort_retention_analysis.csv"),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"cohort_year", type text}, {"2019", type text}, {"2020", type text}}),
+				    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"cohort_year"}, "Attribute", "Value"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Other Columns",{{"Attribute", "Year_Offset"}, {"Value", "Retention_Rate"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

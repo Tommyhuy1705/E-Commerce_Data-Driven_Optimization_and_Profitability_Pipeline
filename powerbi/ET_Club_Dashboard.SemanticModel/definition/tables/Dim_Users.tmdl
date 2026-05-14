@@ -1,0 +1,173 @@
+table Dim_Users
+	lineageTag: 5564f06b-2bda-4117-8db2-bf33c7ace094
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4046ef20-ec3d-46a7-ba21-fa6c13a92f4a
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 30fcd051-8b6d-428d-baa7-2eeb5d4078e8
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 1821ac2a-b7f5-4c4d-a8e0-22b7018929eb
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: a72284b8-e879-4c15-84f2-119282867110
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 73a12201-3dd0-49e8-bc80-b52bb2b7cbe8
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 3223b102-d0fe-4efc-9cb0-f132104fa749
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column street_address
+		dataType: string
+		lineageTag: e988a29e-28de-4500-8dc3-4931fa5d9d3c
+		summarizeBy: none
+		sourceColumn: street_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column postal_code
+		dataType: string
+		lineageTag: bc67f291-4aad-4498-8940-bdf82bcc48ae
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: f21989d2-0922-4d3f-b455-4fbaa01ddf95
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 6709c172-86ed-4e63-98d7-a0ed107fa74b
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: af10431f-566a-45e1-a8c2-a760439eedc8
+		summarizeBy: none
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 77a17da3-ce6d-4a5f-a462-ea7d47d4d8e0
+		summarizeBy: none
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column traffic_source
+		dataType: string
+		lineageTag: d6ee53fc-8da8-4bf4-9950-44339c8ce174
+		summarizeBy: none
+		sourceColumn: traffic_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recency
+		dataType: double
+		lineageTag: aef51bfd-cfa3-4359-a769-b71fb4b46d02
+		summarizeBy: none
+		sourceColumn: Recency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Frequency
+		dataType: int64
+		formatString: 0
+		lineageTag: 2094b1ea-2e38-458a-8544-de0a25c6478a
+		summarizeBy: none
+		sourceColumn: Frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Monetary
+		dataType: double
+		lineageTag: 73379d01-af1b-47d0-818a-77f53709205d
+		summarizeBy: none
+		sourceColumn: Monetary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column return_rate_pct
+		dataType: double
+		lineageTag: f982ec9e-2fed-47c3-9f65-df920125d58f
+		summarizeBy: none
+		sourceColumn: return_rate_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rfm_segment
+		dataType: string
+		lineageTag: 714299ea-35a5-4cc0-b33d-ca97d5f5833d
+		summarizeBy: none
+		sourceColumn: rfm_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Users = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadParquet("dim_users.parquet"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[DimUsersTypes], [Culture="en-US", MissingField=MissingField.Ignore])
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

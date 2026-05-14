@@ -1,0 +1,259 @@
+{
+  "table_profile": {
+    "orders": {
+      "shape": [
+        125226,
+        9
+      ],
+      "memory_mb": 21.407,
+      "duplicate_pk": 0,
+      "null_count": {
+        "created_at": 3063,
+        "returned_at": 113001,
+        "shipped_at": 45772,
+        "delivered_at": 82412
+      },
+      "null_pct": {
+        "created_at": 2.446,
+        "returned_at": 90.2377,
+        "shipped_at": 36.5515,
+        "delivered_at": 65.8106
+      }
+    },
+    "order_items": {
+      "shape": [
+        181759,
+        11
+      ],
+      "memory_mb": 25.178,
+      "duplicate_pk": 0,
+      "null_count": {
+        "created_at": 4405,
+        "shipped_at": 66349,
+        "delivered_at": 119473,
+        "returned_at": 163975
+      },
+      "null_pct": {
+        "created_at": 2.4235,
+        "shipped_at": 36.5038,
+        "delivered_at": 65.7315,
+        "returned_at": 90.2156
+      }
+    },
+    "inventory": {
+      "shape": [
+        490705,
+        12
+      ],
+      "memory_mb": 208.808,
+      "duplicate_pk": 0,
+      "null_count": {
+        "created_at": 4405,
+        "sold_at": 313351,
+        "product_name": 29,
+        "product_brand": 401
+      },
+      "null_pct": {
+        "created_at": 0.8977,
+        "sold_at": 63.8573,
+        "product_name": 0.0059,
+        "product_brand": 0.0817
+      }
+    },
+    "events": {
+      "shape": [
+        2431963,
+        13
+      ],
+      "memory_mb": 1535.903,
+      "duplicate_pk": 0,
+      "null_count": {
+        "user_id": 1125671
+      },
+      "null_pct": {
+        "user_id": 46.2865
+      }
+    },
+    "users": {
+      "shape": [
+        100000,
+        15
+      ],
+      "memory_mb": 67.954,
+      "duplicate_pk": 0,
+      "null_count": {
+        "city": 958,
+        "created_at": 2393
+      },
+      "null_pct": {
+        "city": 0.958,
+        "created_at": 2.393
+      }
+    },
+    "products": {
+      "shape": [
+        29120,
+        9
+      ],
+      "memory_mb": 11.73,
+      "duplicate_pk": 0,
+      "null_count": {
+        "name": 2,
+        "brand": 24
+      },
+      "null_pct": {
+        "name": 0.0069,
+        "brand": 0.0824
+      }
+    },
+    "dcs": {
+      "shape": [
+        10,
+        4
+      ],
+      "memory_mb": 0.001,
+      "duplicate_pk": 0,
+      "null_count": {},
+      "null_pct": {}
+    }
+  },
+  "date_validation": {
+    "shipped_before_created": 19,
+    "delivered_before_shipped": 6,
+    "returned_before_delivered": 5,
+    "negative_num_of_item": 0
+  },
+  "order_status_validation": {
+    "cancelled_with_shipped_at": 0,
+    "cancelled_with_delivered_at": 0,
+    "cancelled_with_returned_at": 0,
+    "returned_without_delivered_at": 305,
+    "returned_without_returned_at": 305,
+    "negative_num_of_item": 0
+  },
+  "users_validation": {
+    "duplicate_user_ids": 0,
+    "null_age": 0,
+    "null_gender": 0,
+    "null_city": 958,
+    "invalid_age": 1685
+  },
+  "products_validation": {
+    "null_category": 0,
+    "null_cost": 0,
+    "null_retail_price": 0,
+    "cost_greater_than_retail_price": 0
+  },
+  "dcs_validation": {
+    "null_name": 0,
+    "null_latitude": 0,
+    "null_longitude": 0
+  },
+  "events_validation": {
+    "traffic_sources_events": [
+      "Adwords",
+      "Email",
+      "Facebook",
+      "Organic",
+      "YouTube"
+    ],
+    "traffic_sources_users": [
+      "Display",
+      "Email",
+      "Facebook",
+      "Organic",
+      "Search"
+    ],
+    "traffic_source_mismatch_count": 2,
+    "traffic_source_mismatch_values": [
+      "Adwords",
+      "YouTube"
+    ],
+    "sessions_checked": 2431963,
+    "sessions_with_time_regressions": 0
+  },
+  "foreign_key_validation": {
+    "orders.user_id_to_users.id": {
+      "checked_rows": 125226,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "order_items.order_id_to_orders.order_id": {
+      "checked_rows": 181759,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "order_items.user_id_to_users.id": {
+      "checked_rows": 181759,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "order_items.product_id_to_products.id": {
+      "checked_rows": 181759,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "products.distribution_center_id_to_dcs.id": {
+      "checked_rows": 29120,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "inventory.product_id_to_products.id": {
+      "checked_rows": 490705,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "inventory.product_distribution_center_id_to_dcs.id": {
+      "checked_rows": 490705,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    },
+    "events.user_id_to_users.id_non_null_only": {
+      "checked_rows": 1306292,
+      "orphan_rows": 0,
+      "orphan_pct": 0.0
+    }
+  },
+  "order_item_quality": {
+    "sale_price_lt_1": 10,
+    "sale_price_eq_0": 0,
+    "missing_product_cost": 0
+  },
+  "scope_reconciliation": {
+    "raw_order_item_rows": 181759,
+    "sub_1_price_rows_excluded": 10,
+    "rows_after_price_filter": 181749,
+    "eligible_rows_after_2024_and_missing_date_exclusion": 168537,
+    "fact_transaction_rows": 168528,
+    "raw_gmv": 10827118.91,
+    "processed_fact_gmv": 10029376.13,
+    "gmv_removed_from_model_scope": 797742.78
+  },
+  "excluded_revenue_item_rows": 10,
+  "bot_candidate_rows": 0,
+  "sample_row_counts": {
+    "orders_shipped_before_created": 19,
+    "orders_delivered_before_shipped": 6,
+    "orders_returned_before_delivered": 5,
+    "returned_orders_missing_timestamps": 50,
+    "order_items_sale_price_lt_1": 10,
+    "events_null_user_id_sample": 50,
+    "inventory_missing_created_at_sample": 50,
+    "products_missing_name_or_brand_sample": 26
+  },
+  "rfm_users": 49484,
+  "recognized_revenue_statuses": [
+    "Complete",
+    "Shipped"
+  ],
+  "dataset_root": "D:\\Study\\Project\\Datavision\\DATAVISION2026_ET_CLUB\\data",
+  "processed_row_counts": {
+    "fact_transactions.parquet": 168528,
+    "agg_funnel_monthly.parquet": 1828,
+    "fact_inventory.parquet": 490705,
+    "dim_users.parquet": 100000,
+    "dim_products.parquet": 29120,
+    "dim_dcs.parquet": 10,
+    "dim_date.parquet": 1843
+  }
+}

@@ -1,0 +1,4 @@
+category,train_months,test_months,mape_pct,train_start,train_end,model_type
+Outerwear & Coats,48,12,40.49,2019-01-01,2022-12-01,prophet
+Jeans,48,12,22.83,2019-01-01,2022-12-01,prophet
+Sweaters,48,12,23.23,2019-01-01,2022-12-01,prophet

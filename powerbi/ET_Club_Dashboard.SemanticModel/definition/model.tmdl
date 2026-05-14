@@ -1,0 +1,43 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["TypeMaps","Source_Folder","fnLoadParquet","fnLoadCsv","Fact_Inventory","Dim_Users","Dim_Products","Dim_DCs","Dim_Date","Agg_Funnel_Monthly","Annual_Revenue_Analysis","Status_Leakage_Analysis","Category_Performance_Analysis","Funnel_Analysis","Traffic_Source_Performance","Journey_Funnel_By_Source","Basket_Affinity_Analysis","Price_Band_Performance","Inventory_ABC_Aging_By_Category_DC","Return_Cancel_Root_Cause_Proxy","Inventory_Turnover_Analysis","Holding_Cost_Analysis","Return_Cost_Analysis","Fulfillment_Performance","RFM_Segment_Analysis","Cohort_Retention_Analysis","LTV_CAC_Analysis","Demand_Forecast_12M","Demand_Forecast_Evaluation","Phase3_Model_Summary","Cluster_Profile_Summary","Fact_Transactions","dataLoadPath"]
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
+
+ref table Fact_Inventory
+ref table Dim_Users
+ref table Dim_Products
+ref table Dim_DCs
+ref table Dim_Date
+ref table Status_Leakage_Analysis
+ref table Funnel_Analysis
+ref table Traffic_Source_Performance
+ref table Price_Band_Performance
+ref table Inventory_ABC_Aging_By_Category_DC
+ref table Return_Cancel_Root_Cause_Proxy
+ref table RFM_Segment_Analysis
+ref table Demand_Forecast_12M
+ref table Demand_Forecast_Evaluation
+ref table Fact_Transactions
+ref table _Measures
+ref table GMV_Waterfall
+ref table Cohort_Retention_Analysis
+ref table LTV_CAC_Analysis
+ref table Actual_Demand_Monthly
+ref table Journey_Funnel_By_Source
+ref table Bridge_Year
+ref table Bridge_Category
+ref table Bridge_Department
+ref table Bridge_Traffic_Source
+ref table Bridge_DC
+
+ref cultureInfo en-US
+

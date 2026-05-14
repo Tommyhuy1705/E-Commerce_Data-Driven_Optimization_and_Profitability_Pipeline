@@ -1,0 +1,6 @@
+section,metric,value
+Clustering,cluster_count,6
+Clustering,top_cluster,Low-Value Browsers
+Forecasting,model_type,prophet
+Forecasting,top_category_mape_pct,28.85
+Forecasting,use_for_demand_planning,Baseline only

@@ -1,0 +1,343 @@
+table _Measures
+	lineageTag: 0cc1d68b-98b7-48a9-8244-3c534843a087
+
+	measure Revenue = SUM(Fact_Transactions[Recognized_Revenue])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: afb05c1c-87e6-4aa6-91cb-ab897feba7b2
+
+	measure GMV = SUM(Fact_Transactions[GMV_All_Status])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 82b740d9-8bec-4137-b6f8-3a09e536ad49
+
+	measure 'Gross Profit' = SUM(Fact_Transactions[Recognized_Gross_Profit])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4605aa3b-0135-4e7a-bd51-84edef88f0c0
+
+	measure 'Gross Margin %' = ```
+			DIVIDE([Gross Profit], [Revenue])
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4a65962e-5520-4d98-847e-5e6f2d219e8a
+
+	measure Orders = ```
+			DISTINCTCOUNT(Fact_Transactions[order_id])
+			
+			```
+		formatString: 0
+		lineageTag: 16c45133-f862-4ed8-a641-2266ce2622f0
+
+	measure Customers = ```
+			DISTINCTCOUNT(Fact_Transactions[user_id])
+			
+			```
+		formatString: 0
+		lineageTag: 8705f73d-8fa4-4ca3-9007-11e8ca2d0ce5
+
+	measure AOV = ```
+			DIVIDE([Revenue], [Orders])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: d710a173-fc84-4160-ba51-957b1c04c5a9
+
+	measure 'Return Value' = ```
+			SUM(Fact_Transactions[Return_Value])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: e02772ce-dcc6-4a70-bc5f-b47f00933d38
+
+	measure 'Return Rate %' = ```
+			DIVIDE([Return Value], [GMV])
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 059dfea1-1083-4aef-bb2e-eb5078a75115
+
+	measure 'Cancelled Value' = ```
+			SUM(Fact_Transactions[Revenue_Lost_Cancelled])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: ac2dbcbd-acea-4da9-9ef0-ab3890bf0c97
+
+	measure 'Processing Backlog Value' = ```
+			SUM(Fact_Transactions[Processing_Backlog_Value])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7e7e951e-3849-403b-802d-7dc61af9c896
+
+	measure 'Status Leakage Value' = ```
+			[Return Value] + [Cancelled Value] + [Processing Backlog Value]
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 69d5552a-c197-4f64-bbb1-0194a61169a3
+
+	measure 'Revenue LY' = ```
+			CALCULATE(
+			    [Revenue],
+			    SAMEPERIODLASTYEAR(Dim_Date[date])
+			)
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a31a666a-c3a4-4712-998d-cfd98d82a557
+
+	measure 'Revenue YoY %' = ```
+			DIVIDE([Revenue] - [Revenue LY], [Revenue LY])
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e2c8954d-75b6-4c40-82c7-bb5736b2399d
+
+	measure 'Total Sessions' = ```
+			SUM('Traffic_Source_Performance'[sessions])
+			
+			```
+		formatString: 0
+		lineageTag: 41e70ca4-349c-4d45-ac2c-d729791eb713
+
+	measure 'Purchase Events' = ```
+			SUM('Traffic_Source_Performance'[purchase_events])
+			
+			```
+		formatString: 0
+		lineageTag: 6b9f2a62-52c9-42a1-817f-5232caedbfa7
+
+	measure 'Purchase Events per User' = ```
+			DIVIDE(
+			    [Purchase Events],
+			    SUM('Traffic_Source_Performance'[global_unique_users])
+			)
+			
+			```
+		formatString: 0.00
+		lineageTag: a71e1583-b268-48e7-9236-eb0d221aab1a
+
+	measure 'Status Leakage %' = ```
+			DIVIDE([Status Leakage Value], [GMV])
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7e6ebaa2-87ac-45a1-aa69-64d7cb0bbace
+
+	measure 'Inventory Cost' = ```
+			SUM(Fact_Inventory[cost])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 1a91350f-93d5-4424-8125-d335dc646010
+
+	measure 'Estimated Holding Cost' = ```
+			SUM(Fact_Inventory[holding_cost_estimate])
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2388a8ec-0326-4173-a18f-170742398286
+
+	measure 'Unsold Units' = ```
+			CALCULATE(
+			    COUNTROWS(Fact_Inventory),
+			    Fact_Inventory[is_sold] = 0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 7c9f9a5d-1e5e-4f72-adba-3d5fa8a9448e
+
+	measure 'Forecast Demand' = ```
+			SUM(Demand_Forecast_12M[yhat])
+			
+			```
+		formatString: #,0
+		lineageTag: e2fd4c77-6c97-4435-806d-a25eb18d3b9b
+
+	measure 'Forecast Lower Bound' = ```
+			SUM(Demand_Forecast_12M[yhat_lower])
+			
+			```
+		formatString: 0
+		lineageTag: bd1d8036-7445-4d35-9c21-b282538b3555
+
+	measure 'Forecast Upper Bound' = ```
+			SUM(Demand_Forecast_12M[yhat_upper])
+			
+			```
+		formatString: 0
+		lineageTag: d3f7ba66-d4df-4e1d-b7d9-a06ac0091430
+
+	measure 'Average MAPE %' = ```
+			AVERAGE(Demand_Forecast_Evaluation[mape_pct])
+			
+			```
+		formatString: 0.0
+		lineageTag: 15f7c50c-ca72-4f8e-9d35-6a8e2af5759c
+
+	measure 'Best MAPE %' = ```
+			MIN(Demand_Forecast_Evaluation[mape_pct])
+			
+			```
+		formatString: 0.0
+		lineageTag: 056a9d66-d3d9-49a7-a0c9-74dff87b4dd1
+
+	measure 'Worst MAPE %' = ```
+			MAX(Demand_Forecast_Evaluation[mape_pct])
+			
+			```
+		formatString: 0.0
+		lineageTag: c3a78968-2353-4493-9bc5-17efa2c26d5f
+
+	measure 'GMV Waterfall Value' =
+			
+			SWITCH(
+			    SELECTEDVALUE(GMV_Waterfall[Step]),
+			    "GMV", [GMV],
+			    "Return Value", -[Return Value],
+			    "Cancelled Value", -[Cancelled Value],
+			    "Processing Backlog", -[Processing Backlog Value],
+			    "Recognized Revenue", [Revenue]
+			)
+		lineageTag: efb1c129-2dba-455b-830a-aeb6959bb890
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sold Items' =
+			
+			CALCULATE(COUNTROWS(Fact_Inventory), Fact_Inventory[is_sold] = 1)
+		formatString: 0
+		lineageTag: 3f7e8bdf-3b14-4d02-be2c-57927c67418c
+
+	measure 'Total Inventory Items' =
+			
+			COUNTROWS(Fact_Inventory)
+		formatString: 0
+		lineageTag: d8c2bb72-c4db-4be4-87e8-6cfffc488b32
+
+	measure 'Sell-Through Rate' =
+			
+			DIVIDE([Sold Items], [Total Inventory Items], 0)
+		lineageTag: 4ffa45b7-b7d9-4b4f-af63-e8308dbd2693
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Users With Valid Purchase' =
+			
+			DISTINCTCOUNT(Fact_Transactions[user_id])
+		formatString: 0
+		lineageTag: 8ec21569-89fb-4507-a747-0ee14bba30e2
+
+	measure 'Total Users Registered' =
+			
+			COUNTROWS(Dim_Users)
+		formatString: 0
+		lineageTag: 3afaf662-5c9c-4446-8b45-5400d2a85d7f
+
+	measure 'No Valid Purchase Users %' =
+			
+			DIVIDE(
+			    [Total Users Registered] - [Users With Valid Purchase],
+			    [Total Users Registered],
+			    0
+			)
+		lineageTag: 2e7ac5e6-d31c-4a49-a68a-b20aa73353de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '1-Time Buyer %' =
+			
+			VAR _freq_table =
+			    ADDCOLUMNS(
+			        VALUES(Fact_Transactions[user_id]),
+			        "@order_count",
+			        CALCULATE(
+			            DISTINCTCOUNT(Fact_Transactions[order_id]),
+			            Fact_Transactions[status] IN {"Complete","Shipped"}
+			        )
+			    )
+			VAR _one_time = COUNTROWS(FILTER(_freq_table, [@order_count] = 1))
+			RETURN DIVIDE(_one_time, COUNTROWS(_freq_table), 0)
+		lineageTag: 2889d104-7fe2-45c3-aca3-41b0169363e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Orders Per Buyer' =
+			
+			DIVIDE(
+			    CALCULATE(DISTINCTCOUNT(Fact_Transactions[order_id]),
+			        Fact_Transactions[status] IN {"Complete","Shipped"}),
+			    [Users With Valid Purchase],
+			    0
+			)
+		lineageTag: ecd3e723-e76f-4c02-8a03-857ce48cbfc9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Frozen Capital $M' = DIVIDE(SUM(Fact_Inventory[cost]), 1000000, 0)
+		lineageTag: a6b0a24a-c454-4e6a-91a4-d210d9432a4a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %sell_through = AVERAGE(Inventory_ABC_Aging_By_Category_DC[sell_through_pct]) / 100
+		lineageTag: 94152590-fa6a-4452-95e7-6ae889f44416
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase Sessions' =
+			
+			CALCULATE(
+			    SUM(Journey_Funnel_By_Source[sessions]),
+			    Journey_Funnel_By_Source[event_type] = "purchase"
+			)
+		formatString: 0
+		lineageTag: cdcbb701-8571-47b6-b7ea-b72b8f721534
+
+	measure 'Product Sessions' =
+			
+			CALCULATE(
+			    SUM(Journey_Funnel_By_Source[sessions]),
+			    Journey_Funnel_By_Source[event_type] = "product"
+			)
+		formatString: 0
+		lineageTag: 4a94875a-28e7-42a9-898c-62c37aa5d923
+
+	measure 'Portfolio Gross Margin %' =
+			
+			CALCULATE(
+			    [Gross Margin %],
+			    ALL(Dim_Products[category])
+			)
+		lineageTag: 8c331157-235c-4108-bae6-4c4ddc4692a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Margin Gap pp' =
+			
+			([Gross Margin %] - [Portfolio Gross Margin %]) * 100
+		lineageTag: 2f1f3dfd-0e18-48de-a461-054306a2347f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Placeholder
+		isHidden
+		lineageTag: a4505ed6-e13e-436b-825b-5717159b5c25
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Placeholder", STRING,
+				    {
+				        {"KPI"}
+				    }
+				)
+
+	annotation PBI_Id = 548d3c75f76b4f94b32108b874b4f28a
+

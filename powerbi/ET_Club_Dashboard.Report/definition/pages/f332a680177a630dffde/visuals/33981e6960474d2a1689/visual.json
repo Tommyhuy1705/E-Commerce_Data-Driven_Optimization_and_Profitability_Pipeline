@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "33981e6960474d2a1689",
+  "position": {
+    "x": 4.5110132158590313,
+    "y": 336.07048458149779,
+    "z": 15000,
+    "height": 120.66960352422907,
+    "width": 147.73568281938327,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Frozen capital is concentrated in a few categories and DCs, requiring markdown, rebalance, or close monitoring."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

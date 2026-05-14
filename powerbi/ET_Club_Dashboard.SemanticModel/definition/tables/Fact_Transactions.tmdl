@@ -1,0 +1,195 @@
+table Fact_Transactions
+	lineageTag: 2c817157-018f-4525-b00e-3d5636003ab2
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 05dbe4d7-64c1-4cc0-b220-b904fd760406
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ab8e5e95-e5e3-4c24-8934-bdc3a2807850
+		summarizeBy: sum
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 17f24690-4e45-4d71-b99d-149b4ea67ee3
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ad0e0abd-4019-4b96-9dc5-7ca5317730fb
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 1925f06a-a919-48c6-b404-b63489950732
+		summarizeBy: none
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column sale_price
+		dataType: double
+		lineageTag: f5b924bc-14aa-4e51-89e7-fc7654aacf8a
+		summarizeBy: sum
+		sourceColumn: sale_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost
+		dataType: double
+		lineageTag: 93d0859d-455a-4bd5-af61-ed169cc89477
+		summarizeBy: sum
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gross_profit
+		dataType: double
+		lineageTag: 9ea1e2c6-7218-41c2-b9ab-2b84802102c2
+		summarizeBy: sum
+		sourceColumn: gross_profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column status
+		dataType: string
+		lineageTag: b4b95656-a97a-4e2b-b2bb-b715438b22f4
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_returned
+		dataType: int64
+		formatString: 0
+		lineageTag: 96696db8-78f9-4147-9a54-66fc46b824fe
+		summarizeBy: sum
+		sourceColumn: is_returned
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_gmv
+		dataType: int64
+		formatString: 0
+		lineageTag: 7885d1ed-8d53-43ce-bf2a-e91efad5b5b8
+		summarizeBy: sum
+		sourceColumn: is_gmv
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_recognized_revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: d39fb515-3f83-4b66-9362-13936b9bd718
+		summarizeBy: sum
+		sourceColumn: is_recognized_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column GMV_All_Status
+		dataType: double
+		lineageTag: ae8e4cb2-28a8-4658-8966-a63b2fea21f9
+		summarizeBy: sum
+		sourceColumn: GMV_All_Status
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Recognized_Revenue
+		dataType: double
+		lineageTag: 1da98e44-a880-4cf9-8496-60c54b1e7355
+		summarizeBy: sum
+		sourceColumn: Recognized_Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Recognized_Gross_Profit
+		dataType: double
+		lineageTag: ea5f7057-110c-496a-88c6-4d094bfb581c
+		summarizeBy: sum
+		sourceColumn: Recognized_Gross_Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Revenue_Lost_Cancelled
+		dataType: double
+		lineageTag: 91b356d6-275d-4972-bd22-83186c368106
+		summarizeBy: sum
+		sourceColumn: Revenue_Lost_Cancelled
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Return_Value
+		dataType: double
+		lineageTag: d66929af-1bdb-4e27-8b50-c01baee948af
+		summarizeBy: sum
+		sourceColumn: Return_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Processing_Backlog_Value
+		dataType: double
+		lineageTag: 8078682f-96bd-4d48-9f8a-de68774a4ac1
+		summarizeBy: sum
+		sourceColumn: Processing_Backlog_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6280d2cd-169f-4dd8-8522-3e9222c864ac
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Transactions = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadParquet("fact_transactions.parquet"),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"sale_price", type number}, {"is_returned", Int64.Type}, {"is_gmv", Int64.Type}, {"is_recognized_revenue", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

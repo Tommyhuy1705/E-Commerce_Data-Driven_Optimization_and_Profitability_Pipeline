@@ -1,0 +1,13 @@
+EVALUATE
+ADDCOLUMNS(
+    SUMMARIZE(
+        Fact_Transactions,
+        Dim_Date[Year_Month],
+        Dim_Products[category]
+    ),
+    "Actual_y", 
+    CALCULATE(
+        COUNTROWS(Fact_Transactions), 
+        Fact_Transactions[status] IN {"Complete", "Shipped"}
+    )
+)

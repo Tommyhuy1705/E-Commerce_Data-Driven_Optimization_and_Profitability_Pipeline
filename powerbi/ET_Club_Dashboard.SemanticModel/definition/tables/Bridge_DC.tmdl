@@ -1,0 +1,27 @@
+table Bridge_DC
+	lineageTag: 22b60570-27b9-4daa-abd6-5b716c88a0ec
+
+	column dc_name
+		lineageTag: e95e45bc-6422-40ed-bafb-4a3b25f64396
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [dc_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Bridge_DC = calculated
+		mode: import
+		source =
+				
+				DISTINCT(
+				    FILTER(
+				        UNION(
+				            SELECTCOLUMNS(Dim_DCs, "dc_name", Dim_DCs[name]),
+				            SELECTCOLUMNS(Inventory_ABC_Aging_By_Category_DC, "dc_name", Inventory_ABC_Aging_By_Category_DC[dc_name])
+				        ),
+				        NOT ISBLANK([dc_name])
+				    )
+				)
+
+	annotation PBI_Id = e2a8390601c841568448dc0cbc579370
+

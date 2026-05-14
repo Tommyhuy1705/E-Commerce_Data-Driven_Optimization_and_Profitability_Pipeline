@@ -1,0 +1,82 @@
+table Demand_Forecast_Evaluation
+	lineageTag: b0d390f4-f522-42a2-9c0b-3d0990296182
+
+	column category
+		dataType: string
+		lineageTag: d6a56b54-3cf6-404f-b53c-b2397051fff9
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column train_months
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d08d1b3-9b89-417b-8c6c-ffbfcb748d8f
+		summarizeBy: sum
+		sourceColumn: train_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column test_months
+		dataType: int64
+		formatString: 0
+		lineageTag: ce4b3b4a-70f0-4230-a577-642f853e1a84
+		summarizeBy: sum
+		sourceColumn: test_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column mape_pct
+		dataType: double
+		lineageTag: c1a0cfaa-27f5-4706-8c2c-c6137b320a2d
+		summarizeBy: sum
+		sourceColumn: mape_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column train_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c7647eab-0f21-4c48-b206-9b919744f5e9
+		summarizeBy: none
+		sourceColumn: train_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column train_end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0be7f5d3-6089-47cf-b1ef-b5e5f456424f
+		summarizeBy: none
+		sourceColumn: train_end
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column model_type
+		dataType: string
+		lineageTag: 5e45f2a5-40b5-423a-a648-29cdd1587960
+		summarizeBy: none
+		sourceColumn: model_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Demand_Forecast_Evaluation = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("demand_forecast_evaluation.csv"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[DemandForecastEvaluationTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

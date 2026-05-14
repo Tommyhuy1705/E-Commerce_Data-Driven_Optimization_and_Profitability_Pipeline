@@ -1,0 +1,37 @@
+table GMV_Waterfall
+	lineageTag: 43aff109-923a-4ff2-b74f-a9f88583cae4
+
+	column Step
+		lineageTag: e63c7525-8b55-47a1-b95b-595aff1f9f9b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Step]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		formatString: 0
+		lineageTag: ac735898-8b79-4232-a465-b6a394f0f580
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GMV_Waterfall = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Step", STRING,
+				    "Sort", INTEGER,
+				    {
+				        {"GMV", 1},
+				        {"Return Value", 2},
+				        {"Cancelled Value", 3},
+				        {"Processing Backlog", 4},
+				        {"Recognized Revenue", 5}
+				    }
+				)
+
+	annotation PBI_Id = 30076388ca034dea9dcfc3701611c5b9
+

@@ -1,0 +1,88 @@
+relationship AutoDetected_8192d108-413d-4bba-a370-a5e752c95ae6
+	fromColumn: Fact_Inventory.product_id
+	toColumn: Dim_Products.product_id
+
+relationship 214a0a11-d7c5-1257-98f9-9827367e7c87
+	fromColumn: Fact_Inventory.center_id
+	toColumn: Dim_DCs.dc_id
+
+relationship AutoDetected_231e95f8-eee0-4bbf-b77a-ca69cf0112e0
+	fromColumn: Fact_Transactions.product_id
+	toColumn: Dim_Products.product_id
+
+relationship AutoDetected_9b637708-5dd7-4ca2-98a6-07309686106b
+	fromColumn: Fact_Transactions.user_id
+	toColumn: Dim_Users.user_id
+
+relationship AutoDetected_6ddabf03-4ae9-48d1-acf6-d18030be2943
+	fromColumn: Fact_Transactions.date_key
+	toColumn: Dim_Date.date_key
+
+relationship AutoDetected_1252554f-ec7f-4bb1-bb1c-c49a7d2d9672
+	fromColumn: Journey_Funnel_By_Source.traffic_source
+	toColumn: Traffic_Source_Performance.traffic_source
+
+relationship BridgeYear_DimDate
+	fromColumn: Dim_Date.year
+	toColumn: Bridge_Year.year
+
+relationship BridgeYear_StatusLeakage
+	fromColumn: Status_Leakage_Analysis.year
+	toColumn: Bridge_Year.year
+
+relationship BridgeYear_DemandForecast
+	fromColumn: Demand_Forecast_12M.year
+	toColumn: Bridge_Year.year
+
+relationship BridgeCategory_DimProducts
+	fromColumn: Dim_Products.category
+	toColumn: Bridge_Category.category
+
+relationship BridgeCategory_PriceBand
+	fromColumn: Price_Band_Performance.category
+	toColumn: Bridge_Category.category
+
+relationship BridgeCategory_InventoryABC
+	fromColumn: Inventory_ABC_Aging_By_Category_DC.product_category
+	toColumn: Bridge_Category.category
+
+relationship BridgeCategory_ReturnCancelProxy
+	fromColumn: Return_Cancel_Root_Cause_Proxy.category
+	toColumn: Bridge_Category.category
+
+relationship BridgeCategory_DemandForecast
+	fromColumn: Demand_Forecast_12M.category
+	toColumn: Bridge_Category.category
+
+relationship BridgeCategory_DemandForecastEvaluation
+	fromColumn: Demand_Forecast_Evaluation.category
+	toColumn: Bridge_Category.category
+
+relationship BridgeDepartment_DimProducts
+	fromColumn: Dim_Products.department
+	toColumn: Bridge_Department.department
+
+relationship BridgeDepartment_PriceBand
+	fromColumn: Price_Band_Performance.department
+	toColumn: Bridge_Department.department
+
+relationship BridgeDepartment_InventoryABC
+	fromColumn: Inventory_ABC_Aging_By_Category_DC.department
+	toColumn: Bridge_Department.department
+
+relationship BridgeDepartment_ReturnCancelProxy
+	fromColumn: Return_Cancel_Root_Cause_Proxy.department
+	toColumn: Bridge_Department.department
+
+relationship BridgeTrafficSource_Performance
+	fromColumn: Traffic_Source_Performance.traffic_source
+	toColumn: Bridge_Traffic_Source.traffic_source
+
+relationship BridgeDC_DimDCs
+	fromColumn: Dim_DCs.name
+	toColumn: Bridge_DC.dc_name
+
+relationship BridgeDC_InventoryABC
+	fromColumn: Inventory_ABC_Aging_By_Category_DC.dc_name
+	toColumn: Bridge_DC.dc_name
+

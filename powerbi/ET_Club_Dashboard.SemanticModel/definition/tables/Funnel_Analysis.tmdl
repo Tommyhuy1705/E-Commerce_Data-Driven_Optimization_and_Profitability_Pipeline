@@ -1,0 +1,81 @@
+table Funnel_Analysis
+	lineageTag: 1a427e51-abcd-46a5-9916-b5afe1f8f250
+
+	column stage
+		dataType: string
+		lineageTag: 0e0fbd94-0b30-4d73-a5ab-f142ccff8cdf
+		summarizeBy: none
+		sourceColumn: stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 351e3af8-3d4f-4b63-bca9-51c00f4cd751
+		summarizeBy: sum
+		sourceColumn: event_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a01641c-8c76-4ba0-b907-052ea8e1edeb
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column global_unique_users
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ef746c4-132d-4843-ada5-c2e2b6cf2cb2
+		summarizeBy: sum
+		sourceColumn: global_unique_users
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_conversion_from_prev_pct
+		dataType: double
+		lineageTag: f65c31e7-2c84-4725-b026-c85e9c2c916b
+		summarizeBy: sum
+		sourceColumn: event_conversion_from_prev_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column session_conversion_from_prev_pct
+		dataType: double
+		lineageTag: 3ca71728-6d0b-40af-9829-201499cb17e5
+		summarizeBy: sum
+		sourceColumn: session_conversion_from_prev_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column user_conversion_from_prev_pct
+		dataType: double
+		lineageTag: cdd7ef35-dfb3-4575-8f4f-4547aa1cd24e
+		summarizeBy: sum
+		sourceColumn: user_conversion_from_prev_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Funnel_Analysis = m
+		mode: import
+		source =
+				let
+				    Source = fnLoadCsv("funnel_analysis.csv"),
+				    Typed = Table.TransformColumnTypes(Source, TypeMaps[FunnelAnalysisTypes], "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
