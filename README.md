@@ -137,7 +137,7 @@ Agg_Funnel_Monthly ──[user_id]──> Dim_Users
 
 ## Power BI Dashboard
 
-File Power BI: [powerbi/ET_Club_Dashboard.pbix](powerbi/ET_Club_Dashboard.pbix)
+File Power BI: [powerbi/E-commerce_Sales_Dashboard.pbix](powerbi/E-commerce_Sales_Dashboard.pbix)
 
 Dashboard bao gồm 5 trang phân tích với 30+ visual, được xây dựng dựa trên star schema và aggregate tables để tối ưu hóa tốc độ truy vấn.
 
@@ -186,7 +186,7 @@ E-Commerce Data-Driven Optimization & Profitability Pipeline/
 ├── notebooks/                   # Jupyter notebooks cho EDA, modeling, forecasting
 │
 ├── powerbi/
-│   └── ET_Club_Dashboard.pbix   # Power BI file chính
+│   └── E-commerce_Sales_Dashboard.pbix   # Power BI file chính
 │
 ├── reports/
 │   ├── Report.pdf               # Báo cáo cuối cùng
@@ -361,7 +361,7 @@ pip install -r requirements.txt
 ### 3. Cài Đặt Power BI & Excel
 
 - **Power BI Desktop:** https://powerbi.microsoft.com/downloads/
-- File Power BI: `powerbi/ET_Club_Dashboard.pbix`
+- File Power BI: `powerbi/E-commerce_Sales_Dashboard.pbix`
 
 ## Tài Liệu Tham Khảo
 
