@@ -398,7 +398,7 @@ pip install -r requirements.txt
 
 **Dự án được hoàn thành:** Tháng 5, 2026  
 **Tác giả:** Trần Viết Gia Huy  
-**Email/Contact:** [Thông tin liên hệ]
+**Email/Contact:** giahuytranviet.work@gmail.com
 
 **Ghi Chú Kỹ Thuật:**
 - Dữ liệu raw được giữ nguyên trong `data/raw/` để đảm bảo truy vết
