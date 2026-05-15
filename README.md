@@ -142,27 +142,37 @@ File Power BI: [powerbi/E-commerce_Sales_Dashboard.pbix](powerbi/E-commerce_Sale
 Dashboard bao gồm 5 trang phân tích với 30+ visual, được xây dựng dựa trên star schema và aggregate tables để tối ưu hóa tốc độ truy vấn.
 
 ### Trang 1: Executive Overview
+![Executive Overview](reports/Dashboard/Executive%20Overview.png)
+
 - **KPI chính:** GMV, Recognized Revenue, Gross Profit, Gross Margin %, Status Leakage, AOV
 - **Xu hướng:** Revenue & GM growth 2019-2023 (line chart)
 - **Mục tiêu:** Đọc nhanh sức khỏe kinh doanh tổng thể
 
 ### Trang 2: Customer & Marketing Funnel
+![Customer & Marketing](reports/Dashboard/Customer%20%26%20Marketing.png)
+
 - **RFM Distribution:** Phân bố khách hàng theo segment (Champions/Loyal/At Risk/About to Lose/No Purchase)
 - **Website Funnel:** Product Views → Add to Cart → Purchase, tỷ lệ cancel session
 - **Traffic Source Performance:** Revenue events, user registrations, Purchase/User ratio theo kênh (Email/Adwords/Facebook/Organic)
 - **Mục tiêu:** Xác định điểm nghẽn conversion và hiệu suất kênh acquisition vs re-engagement
 
 ### Trang 3: Product & Revenue Analysis
+![Product & Revenue](reports/Dashboard/Product%20%26%20Revenue.png)
+
 - **Category Quadrant:** Phân tích bubble chart (Revenue × Gross Margin % × Status Leakage %)
 - **Price Band Performance:** Doanh thu, margin, return rate theo price tier (Men/Women)
 - **Mục tiêu:** Tìm nhóm Star (scale), Fix, Markdown hoặc Stop-buy
 
 ### Trang 4: Operations & Root Causes
+![Operations & Root Causes](reports/Dashboard/Operations%20%26%20Root%20Causes.png)
+
 - **Inventory Metrics:** Sell-through %, frozen capital, holding cost theo category
 - **Top Return/Cancel Clusters:** Danh sách chi tiết department, category, brand, price band, fulfillment status
 - **Mục tiêu:** Phát hiện tồn kho cần markdown/rebalance và nguyên nhân cancel/return
 
 ### Trang 5: Forecast & Recommendations
+![Forecast & Recommendations](reports/Dashboard/Forecast%20%26%20Recommendations.png)
+
 - **12-Month Demand Forecast:** Dự báo theo category chính (Jeans, Outerwear & Coats, Sweaters)
 - **Inventory Action Recommendations:** Monitor vs Markdown with guardrail vs Rebalance by DC
 - **Mục tiêu:** Hướng dẫn hành động procurement và markdown cho 2024
