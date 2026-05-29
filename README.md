@@ -190,7 +190,7 @@ Sau vòng dashboard và forecast baseline, project được bổ sung một lớ
 
 Các output chính:
 - `src/phase3_step1_models.py`: rebuild baseline, elasticity proxy, markdown policy, DC rebalance, retention tail, scenario ROI và model scorecard.
-- `models/phase3_vong3/`: lưu reusable model artifacts như baseline, scenario weights, budget weights, price elasticity, markdown/rebalance/retention weights.
+- `models/`: lưu reusable model artifacts như baseline, scenario weights, budget weights, price elasticity, markdown/rebalance/retention weights.
 - `data/processed/phase3_*.csv` và `data/processed/parameters_output.csv`: bảng sạch để đưa vào Excel/BI/report.
 - `notebooks/4.0_phase3_roi_financial_engine.ipynb`: notebook cá nhân hóa, trình bày lại model theo luồng portfolio.
 
@@ -216,7 +216,7 @@ E-Commerce Data-Driven Optimization & Profitability Pipeline/
 │   └── 4.0_phase3_roi_financial_engine.ipynb
 │
 ├── models/
-│   └── phase3_vong3/             # Phase 3 model artifacts, weights, policies
+│   └── *.csv / *.json            # Phase 3 model artifacts, weights, policies
 │
 ├── powerbi/
 │   └── E-commerce_Sales_Dashboard.pbix   # Power BI file chính

@@ -15,7 +15,7 @@ The model is not a production optimizer. It is a transparent financial engine wi
 |---|---|---|
 | Model code | `src/phase3_step1_models.py` | Rebuilds baseline metrics, model weights, policies, scenarios, and scorecards. |
 | Clean notebook | `notebooks/4.0_phase3_roi_financial_engine.ipynb` | Personal-project walkthrough for running and reviewing the ROI model. |
-| Model artifacts | `models/phase3_vong3/` | Stores reusable baseline, scenario, elasticity, markdown, rebalance, retention, and budget weights. |
+| Model artifacts | `models/` | Stores reusable baseline, scenario, elasticity, markdown, rebalance, retention, and budget weights. |
 | Processed outputs | `data/processed/phase3_*.csv` and `parameters_output.csv` | CSV outputs for BI, Excel, reporting, and validation. |
 
 ## Baseline Inputs
@@ -75,5 +75,5 @@ The generated scorecard gives the integrated model an overall score of `7.23/10`
 ## Rebuild Command
 
 ```powershell
-& "C:\Users\LEGION\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m src.phase3_step1_models --dataset-root data --models-dir models\phase3_vong3
+& "C:\Users\LEGION\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m src.phase3_step1_models --dataset-root data --models-dir models
 ```

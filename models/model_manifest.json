@@ -28,7 +28,7 @@
     "dc_rebalance_weights": "dc_rebalance_weights.csv",
     "retention_cluster_weights": "retention_cluster_weights.csv"
   },
-  "load_example": "from src.phase3_step1_models import load_model_artifacts; artifacts = load_model_artifacts('models/phase3_vong3')",
+  "load_example": "from src.phase3_step1_models import load_model_artifacts; artifacts = load_model_artifacts('models')",
   "caveats": [
     "Price elasticity is a category-level proxy because explicit discount history is not available.",
     "OOS share, brand erosion, and reverse logistics cost are scenario assumptions, not raw fields.",
