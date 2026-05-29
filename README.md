@@ -62,6 +62,8 @@ Với 10 distribution centers trải dài khắp nước Mỹ, các biến độ
 - **Báo cáo chính:** [reports/Report.pdf](reports/Report.pdf)
 - **Dashboard visuals:** [reports/Dashboard](reports/Dashboard)
 - **Processed datasets:** [data/processed/](data/processed/)
+- **Phase 3 ROI engine:** [docs/documents/phase3_roi_financial_engine.md](docs/documents/phase3_roi_financial_engine.md)
+- **Notebook Phase 3 sạch:** [notebooks/4.0_phase3_roi_financial_engine.ipynb](notebooks/4.0_phase3_roi_financial_engine.ipynb)
 
 ## Cấu Trúc Dữ Liệu - Fact & Dimension Tables
 
@@ -177,6 +179,24 @@ Dashboard bao gồm 5 trang phân tích với 30+ visual, được xây dựng d
 - **Inventory Action Recommendations:** Monitor vs Markdown with guardrail vs Rebalance by DC
 - **Mục tiêu:** Hướng dẫn hành động procurement và markdown cho 2024
 
+## Phase 3 ROI Financial Engine
+
+Sau vòng dashboard và forecast baseline, project được bổ sung một lớp **decision-support financial engine** để lượng hóa tác động của các hành động vận hành dưới ngân sách `$500K`.
+
+| Scenario | Discount | Incremental GP | Net Benefit | ROI | Payback |
+|---|---:|---:|---:|---:|---:|
+| Pessimistic | `20%` | `$513.7K` | `$13.7K` | `2.74%` | `11.68 tháng` |
+| Base | `30%` | `$1.06M` | `$562.6K` | `112.52%` | `5.65 tháng` |
+| Optimistic | `40%` | `$1.52M` | `$1.02M` | `203.08%` | `3.96 tháng` |
+
+Các output chính:
+- `src/phase3_step1_models.py`: rebuild baseline, elasticity proxy, markdown policy, DC rebalance, retention tail, scenario ROI và model scorecard.
+- `models/phase3_vong3/`: lưu reusable model artifacts như baseline, scenario weights, budget weights, price elasticity, markdown/rebalance/retention weights.
+- `data/processed/phase3_*.csv` và `data/processed/parameters_output.csv`: bảng sạch để đưa vào Excel/BI/report.
+- `notebooks/4.0_phase3_roi_financial_engine.ipynb`: notebook cá nhân hóa, trình bày lại model theo luồng portfolio.
+
+Model đạt overall score `7.23/10`: đủ tốt cho strategic decision-support, nhưng vẫn công khai giới hạn vì dataset chưa có discount history, stockout flag, return reason, shipping cost và marketing spend.
+
 ## Cấu Trúc Thư Mục
 
 ```
@@ -194,6 +214,10 @@ E-Commerce Data-Driven Optimization & Profitability Pipeline/
 │   └── processed/               # Dữ liệu cuối cùng cho BI (Fact/Dim tables)
 │
 ├── notebooks/                   # Jupyter notebooks cho EDA, modeling, forecasting
+│   └── 4.0_phase3_roi_financial_engine.ipynb
+│
+├── models/
+│   └── phase3_vong3/             # Phase 3 model artifacts, weights, policies
 │
 ├── powerbi/
 │   └── E-commerce_Sales_Dashboard.pbix   # Power BI file chính
@@ -279,6 +303,8 @@ Phân tích chuyên sâu theo **6 nhóm insight chính:**
 - **Customer Clustering:** Rule-based RFM segmentation (Champions/Loyal/At Risk/About to Lose/No Purchase)
 - **Demand Forecasting:** Time-series forecast 12 tháng cho 3 danh mục chủ lực (MAPE ~50.9%)
 - **ABC Inventory Analysis:** Phân loại hàng để ưu tiên markdown, rebalance hay monitor
+- **ROI Financial Engine:** mô phỏng 3 scenario đầu tư `$500K`; Base case đạt ROI `112.52%` và payback `5.65` tháng
+- **Markdown & DC Rebalance Policy:** 146 markdown recommendations với guardrail không markdown A-class, 41 DC transfer rows có value/cost ratio khoảng `1.58x`
 
 ### Phase 4: Actionable Recommendations (Mục 3 - Đề Xuất Hành Động)
 

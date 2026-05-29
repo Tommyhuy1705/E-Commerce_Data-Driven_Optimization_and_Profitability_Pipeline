@@ -1,0 +1,42 @@
+product_category,from_center_id,to_center_id,transfer_units,cost_to_move_per_unit,expected_value_per_unit,trigger_rule,optimization_method
+Dresses,3,1,111,3.185668394033732,6.445654210024472,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,5,3,67,2.7763119642895955,8.535486299655465,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,5,8,89,2.3202411948338586,3.488353561851825,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,10,7,45,3.5642351387267324,4.608925972658405,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,10,9,26,2.212404679700471,7.6958293789165655,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,2,3,40,4.289724786092185,4.520045256369925,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Swim,9,10,49,2.212404679700471,3.7291662690864853,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,10,1,23,3.349104481887874,7.6958293789165655,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,5,3,46,2.7763119642895955,3.488353561851825,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Swim,8,5,47,2.3202411948338586,3.04303766168969,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,7,2,21,3.625840931958556,6.719316655402325,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Suits & Sport Coats,6,2,34,3.7728145179980235,4.071582246625123,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Pants,1,8,48,2.794319541886921,2.8006015853327026,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,5,8,37,2.3202411948338586,3.591626079732799,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,7,2,24,3.625840931958556,5.377631266130498,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,7,9,24,3.37062459752835,5.377631266130498,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Jeans,7,6,18,2.21207562674912,6.719316655402325,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Tops & Tees,5,8,44,2.3202411948338586,2.5241643984015663,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Suits & Sport Coats,5,3,11,2.7763119642895955,9.964220908507118,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,6,7,32,2.21207562674912,3.1981106625525353,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Suits & Sport Coats,1,2,16,3.172704244189874,5.954889640154333,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,7,10,16,3.5642351387267324,5.377631266130498,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Pants,3,5,28,2.7763119642895955,3.0636769410424605,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Tops & Tees,3,1,25,3.185668394033732,3.2624213301485887,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,6,1,17,4.342718034302233,4.838864379370113,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Swim,9,1,22,3.4577385828095784,3.7291662690864853,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Outerwear & Coats,7,1,13,4.137838881362173,5.377631266130498,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Swim,3,5,20,2.7763119642895955,3.257439836614598,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Fashion Hoodies & Sweatshirts,1,8,20,2.794319541886921,3.001272180213097,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Fashion Hoodies & Sweatshirts,3,10,12,4.096130698632302,4.549974088392544,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sleep & Lounge,7,9,16,3.37062459752835,3.479498836763231,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Dresses,8,1,11,2.794319541886921,4.799322839519454,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,2,1,11,3.172704244189874,4.520045256369925,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Dresses,6,10,10,3.7606689269299167,4.436471959060452,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,2,7,10,3.625840931958556,4.520045256369925,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Dresses,5,1,12,2.871643482832683,3.4116208966496577,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Intimates,6,7,11,2.21207562674912,2.354284726087004,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Sweaters,5,3,2,2.7763119642895955,3.591626079732799,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Swim,9,5,2,3.534786107561347,3.7291662690864853,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Dresses,6,2,1,3.7728145179980235,4.436471959060452,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport
+Fashion Hoodies & Sweatshirts,3,8,1,3.079062251259047,4.549974088392544,cost_to_move < accumulated_holding_cost_per_unit * sell_through_probability,greedy_min_cost_transport

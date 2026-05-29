@@ -1,5 +1,7 @@
 # Phase 3 Modeling Summary
 
+> Update 2026-05-29: Phase 3 now includes a separate ROI financial engine for the personal portfolio version. See `docs/documents/phase3_roi_financial_engine.md` and `notebooks/4.0_phase3_roi_financial_engine.ipynb` for the current integrated markdown, rebalance, retention, scenario ROI, and model-quality layer.
+
 **Thời gian cập nhật:** 08/05/2026  
 **Trạng thái:** hoàn thành clustering và forecast baseline; kết quả forecast cần dùng thận trọng.
 

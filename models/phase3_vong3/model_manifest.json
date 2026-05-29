@@ -1,0 +1,37 @@
+{
+  "model_name": "E-Commerce Phase 3 Integrated ROI Model",
+  "model_version": "v2-personal-portfolio",
+  "baseline_source": "Portfolio baseline regenerated from data/raw and processed Power BI-ready outputs",
+  "random_seed": 42,
+  "created_outputs": {
+    "scenario_rows": 3,
+    "elasticity_rows": 26,
+    "markdown_policy_rows": 146,
+    "dc_rebalance_rows": 41,
+    "retention_cluster_rows": 6
+  },
+  "config": {
+    "investment_budget": 500000.0,
+    "holding_cost_rate": 0.22,
+    "forward_holding_days": 180,
+    "reverse_logistics_cost": 20.0,
+    "min_transfer_cost": 2.0,
+    "max_transfer_cost": 8.0,
+    "max_rebalance_categories": 12
+  },
+  "artifacts": {
+    "baseline": "baseline_metrics.json",
+    "scenario_weights": "scenario_weights.csv",
+    "budget_weights": "budget_weights.csv",
+    "price_elasticity_weights": "price_elasticity_weights.csv",
+    "markdown_policy_weights": "markdown_policy_weights.csv",
+    "dc_rebalance_weights": "dc_rebalance_weights.csv",
+    "retention_cluster_weights": "retention_cluster_weights.csv"
+  },
+  "load_example": "from src.phase3_step1_models import load_model_artifacts; artifacts = load_model_artifacts('models/phase3_vong3')",
+  "caveats": [
+    "Price elasticity is a category-level proxy because explicit discount history is not available.",
+    "OOS share, brand erosion, and reverse logistics cost are scenario assumptions, not raw fields.",
+    "DC rebalance uses a deterministic greedy min-cost fallback unless upgraded to SciPy/PuLP later."
+  ]
+}

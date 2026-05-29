@@ -1,0 +1,7 @@
+cluster_label,users,base_reactivation_pct,expected_incremental_gp_base,recommended_use
+Low-Value Browsers,50516,2.75,62420.97086916504,Segmented retention tail scenario
+Occasional Spenders,27516,4.0,49455.450570071625,Segmented retention tail scenario
+At-Risk High Value,13031,7.0,40986.86068696598,Win-back email after SLA fix
+Selective Buyers,4881,5.5,12062.584480655416,Segmented retention tail scenario
+Recent But Inactive,3463,5.0,7780.210846605523,Segmented retention tail scenario
+High-Value Loyal,593,6.0,1598.7288589213078,Loyalty/referral after delivery

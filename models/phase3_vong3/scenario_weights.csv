@@ -1,0 +1,4 @@
+name,markdown_discount_pct,markdown_response_multiplier,oos_cancel_share_pct,oos_resolution_pct,retention_reactivation_pct,return_reduction_pct,brand_erosion_pct
+Pessimistic,20.0,0.8,10.0,40.0,3.0,5.0,5.0
+Base,30.0,1.0,15.0,60.0,5.0,10.0,3.0
+Optimistic,40.0,1.15,20.0,70.0,10.0,15.0,1.0

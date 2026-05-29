@@ -1,0 +1,9 @@
+budget_item,budget_usd,budget_share_pct,notes
+Inventory Management System - WMS core,80000,16.0,Core WMS setup for inventory visibility
+Markdown Automation Add-on,40000,8.0,Rule-based markdown execution and monitoring
+Fulfillment & SLA Improvement,100000,20.0,"Exception queue, process redesign, staffing buffer"
+Data Engineering & Forecast Improvement,70000,14.000000000000002,"Pipeline, model monitoring, rolling review"
+Sizing & Product Content,50000,10.0,Return root-cause mitigation for fit/content issues
+CRM & Email Automation,70000,14.000000000000002,Post-delivery trigger and cross-sell journeys
+Checkout UX - OOS focus,40000,8.0,OOS fallback UI and checkout A/B tests
+Contingency Buffer,50000,10.0,Implementation risk reserve
