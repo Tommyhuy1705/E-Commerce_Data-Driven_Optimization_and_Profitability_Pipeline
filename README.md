@@ -1,7 +1,6 @@
 ﻿# End-to-End E-Commerce Analytics: Phân Tích Điểm Nghẽn Vận Hành và Xây Dựng Mô Hình Dự Báo Nhu Cầu
 
 **Tác giả:** Trần Viết Gia Huy  
-**Vai trò:** Data Analyst  
 **Bối cảnh:** Phân tích dữ liệu thực tế (3.35M+ dòng) của nền tảng E-commerce giai đoạn 2019-2023
 
 ## Mục Lục
