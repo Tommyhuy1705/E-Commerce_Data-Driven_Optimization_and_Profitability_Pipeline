@@ -62,6 +62,9 @@ Với 10 distribution centers trải dài khắp nước Mỹ, các biến độ
 - **Dashboard visuals:** [reports/Dashboard](reports/Dashboard)
 - **Processed datasets:** [data/processed/](data/processed/)
 - **Phase 3 ROI engine:** [docs/documents/phase3_roi_financial_engine.md](docs/documents/phase3_roi_financial_engine.md)
+- **Forecast improvement plan:** [docs/documents/forecast_improvement_plan.md](docs/documents/forecast_improvement_plan.md)
+- **Implementation roadmap:** [docs/documents/implementation_roadmap.md](docs/documents/implementation_roadmap.md)
+- **Assumption registry:** [docs/documents/assumption_registry.md](docs/documents/assumption_registry.md)
 - **Notebook Phase 3 sạch:** [notebooks/4.0_phase3_roi_financial_engine.ipynb](notebooks/4.0_phase3_roi_financial_engine.ipynb)
 
 ## Cấu Trúc Dữ Liệu - Fact & Dimension Tables
@@ -190,11 +193,26 @@ Sau vòng dashboard và forecast baseline, project được bổ sung một lớ
 
 Các output chính:
 - `src/phase3_step1_models.py`: rebuild baseline, elasticity proxy, markdown policy, DC rebalance, retention tail, scenario ROI và model scorecard.
+- `src/forecast_benchmark.py`: chạy rolling-origin forecast benchmark cho top categories, so sánh seasonal naive, moving average và Random Forest lag model.
 - `models/`: lưu reusable model artifacts như baseline, scenario weights, budget weights, price elasticity, markdown/rebalance/retention weights.
 - `data/processed/phase3_*.csv` và `data/processed/parameters_output.csv`: bảng sạch để đưa vào Excel/BI/report.
+- `data/processed/forecast_model_benchmark.csv`: benchmark forecast local, được sinh lại từ `src/forecast_benchmark.py`.
 - `notebooks/4.0_phase3_roi_financial_engine.ipynb`: notebook cá nhân hóa, trình bày lại model theo luồng portfolio.
 
-Model đạt overall score `7.23/10`: đủ tốt cho strategic decision-support, nhưng vẫn công khai giới hạn vì dataset chưa có discount history, stockout flag, return reason, shipping cost và marketing spend.
+Model đạt overall score `7.23/10`: đủ tốt cho strategic decision-support, nhưng vẫn công khai giới hạn vì dataset chưa có discount history, stockout flag, return reason, shipping cost và marketing spend. DC rebalance được giữ như diagnostic phụ vì net value hiện nhỏ; trọng tâm business vẫn là markdown guardrail, checkout/OOS recovery và retention.
+
+## Forecast Benchmark Upgrade
+
+Sau nhận xét mentor về forecast MAPE cao, project đã bổ sung `src/forecast_benchmark.py` để chạy rolling-origin one-step-ahead benchmark cho top revenue categories.
+
+| Forecast layer | Kết quả |
+|---|---:|
+| Baseline cũ trong Phase 3 summary | MAPE khoảng `50.9%` |
+| Benchmark mới, average best-category MAPE | `14.57%` |
+| Best model chủ đạo | `moving_average_3m` |
+| ML benchmark | `random_forest_lag_features` |
+
+Lưu ý: `14.57%` không so trực tiếp 1-1 với `50.9%` vì protocol khác nhau. Số mới là rolling one-step-ahead backtest; số cũ là baseline/holdout thận trọng hơn. Forecast vẫn được định vị là planning signal có monitoring, không phải automated procurement engine.
 
 ## Cấu Trúc Thư Mục
 
@@ -226,6 +244,8 @@ E-Commerce Data-Driven Optimization & Profitability Pipeline/
 │   └── Dashboard/               # Screenshots của dashboard
 │
 ├── src/                         # Python scripts cho ETL, analysis
+│   ├── phase3_step1_models.py
+│   └── forecast_benchmark.py
 │
 ├── docs/
 │   ├── documents/               # Tài liệu, hướng dẫn
@@ -300,7 +320,7 @@ Phân tích chuyên sâu theo **6 nhóm insight chính:**
 ### Phase 3: Modeling & Forecasting (Advanced Analytics)
 
 - **Customer Clustering:** Rule-based RFM segmentation (Champions/Loyal/At Risk/About to Lose/No Purchase)
-- **Demand Forecasting:** Time-series forecast 12 tháng cho 3 danh mục chủ lực (MAPE ~50.9%)
+- **Demand Forecasting:** baseline forecast cũ có MAPE khoảng `50.9%`; benchmark mới dùng rolling one-step-ahead cho top categories đạt average best-category MAPE `14.57%`
 - **ABC Inventory Analysis:** Phân loại hàng để ưu tiên markdown, rebalance hay monitor
 - **ROI Financial Engine:** mô phỏng 3 scenario đầu tư `$500K`; Base case đạt ROI `112.52%` và payback `5.65` tháng
 - **Markdown & DC Rebalance Policy:** 146 markdown recommendations với guardrail không markdown A-class, 41 DC transfer rows có value/cost ratio khoảng `1.58x`
@@ -439,4 +459,4 @@ pip install -r requirements.txt
 - Dữ liệu raw được giữ nguyên trong `data/raw/` để đảm bảo truy vết
 - Tất cả xử lý dữ liệu được thực hiện qua Python/Pandas pipeline
 - Power BI import processed data từ `data/processed/` (Parquet/CSV)
-- Forecast MAPE ~50.9% - dùng để hướng dẫn trend, không phải tham chiếu tuyệt đối
+- Forecast baseline cũ MAPE ~50.9%; benchmark mới đạt average best-category MAPE 14.57% theo rolling one-step-ahead protocol

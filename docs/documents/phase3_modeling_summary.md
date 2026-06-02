@@ -2,6 +2,8 @@
 
 > Update 2026-05-29: Phase 3 now includes a separate ROI financial engine for the personal portfolio version. See `docs/documents/phase3_roi_financial_engine.md` and `notebooks/4.0_phase3_roi_financial_engine.ipynb` for the current integrated markdown, rebalance, retention, scenario ROI, and model-quality layer.
 
+> Update 2026-06-02: Forecasting now includes `src/forecast_benchmark.py`, a rolling-origin one-step-ahead benchmark across seasonal naive, moving average, and Random Forest lag-feature models. The current average best-category MAPE is `14.57%` across the top five categories. This is not directly comparable to the older `50.9%` baseline because the backtest protocol is different.
+
 **Thời gian cập nhật:** 08/05/2026  
 **Trạng thái:** hoàn thành clustering và forecast baseline; kết quả forecast cần dùng thận trọng.
 

@@ -43,6 +43,16 @@ The model is not a production optimizer. It is a transparent financial engine wi
 | Retention Tail | Estimates supporting upside from reactivating one-time or at-risk buyers. | Supporting benefit, not a standalone churn model. |
 | Scenario Financial Layer | Combines benefits, costs, budget, ROI, and payback under three scenarios. | Used as the benchmark for Excel/BI financial views. |
 
+## Current Position On DC Rebalance
+
+DC rebalance should be treated as a supporting diagnostic in the current portfolio version. Its current net value is small relative to the total incremental GP, so it should not be pitched as a primary ROI lever unless a later LP/MIP optimizer proves materially higher value.
+
+Recommended presentation:
+
+- Primary lever: inventory markdown with ABC-aging guardrails.
+- Secondary levers: checkout/OOS recovery, retention tail, return reduction.
+- Supporting diagnostic: DC rebalance imbalance and transfer candidates.
+
 ## Scenario Results
 
 | Scenario | Discount | Incremental GP | Net Benefit After Investment | ROI | Payback |
@@ -71,6 +81,13 @@ The generated scorecard gives the integrated model an overall score of `7.23/10`
 - OOS share, brand erosion, and reverse-logistics impact are scenario assumptions, not raw fields.
 - DC rebalance is a deterministic transport heuristic; a production version should add SKU/size constraints, capacity constraints, and an LP/MIP solver.
 - Forecasting remains baseline-only while MAPE is high, so forecast output should support inventory monitoring rather than automated procurement.
+
+## Related Improvement Work
+
+- `docs/documents/assumption_registry.md`: separates observed metrics, proxies, and scenario assumptions.
+- `docs/documents/implementation_roadmap.md`: defines monthly milestones, phase gates, and kill-switches.
+- `docs/documents/forecast_improvement_plan.md`: defines the forecast benchmark and roadmap.
+- `src/forecast_benchmark.py`: implements rolling-origin forecast benchmarking for top categories.
 
 ## Rebuild Command
 
